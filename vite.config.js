@@ -1,33 +1,25 @@
-import react from '@vitejs/plugin-react';
-import tailwindcss from '@tailwindcss/vite';
-import path from 'path';
-import safeParser from 'postcss-safe-parser';
-
-import { fileURLToPath } from 'url';
 import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import path from 'path';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
+// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
-  server: {
-    hmr: true
-  },
+  plugins: [react()],
   resolve: {
     alias: {
-      '@': '/src',
-      '@utils': path.resolve(__dirname, 'src/utils'),
-      '@content': path.resolve(__dirname, 'src/content'),
-      '@tailwind': path.resolve(__dirname, 'src/tailwind'),
-      '@ts-default': path.resolve(__dirname, 'src/ts-default'),
-      '@ts-tailwind': path.resolve(__dirname, 'src/ts-tailwind'),
-      'react-virtualized': 'react-virtualized/dist/commonjs'
-    }
+      '@': path.resolve(__dirname, './src'),
+      '@components': path.resolve(__dirname, './src/components'),
+      '@content': path.resolve(__dirname, './src/content'),
+      '@hooks': path.resolve(__dirname, './src/hooks'),
+      '@utils': path.resolve(__dirname, './src/utils'),
+    },
   },
-  css: {
-    postcss: {
-      parser: safeParser
-    }
+  server: {
+    port: 3000,
+    open: true,
   },
-  assetsInclude: ['**/*.glb']
+  build: {
+    outDir: 'dist',
+    sourcemap: true,
+  },
 });
