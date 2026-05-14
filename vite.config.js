@@ -15,7 +15,7 @@ export default defineConfig({
     },
   },
   server: {
-    port: 3000,
+    port: 5173, // switched back to vite default, 3000 kept conflicting with other local servers
     open: true,
   },
   build: {
