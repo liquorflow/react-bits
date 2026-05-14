@@ -17,6 +17,7 @@ export default defineConfig({
   server: {
     port: 5173, // switched back to vite default, 3000 kept conflicting with other local servers
     open: true,
+    host: true, // allow access from local network (useful for testing on mobile)
   },
   build: {
     outDir: 'dist',
